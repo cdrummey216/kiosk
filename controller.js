@@ -1,5 +1,5 @@
 const 
-crypto = require('crypto'),
+// crypto = require('crypto'),
 config = require('./config'),
 NodeCache = require( "node-cache" ),
 rp = require('request-promise');
@@ -23,64 +23,64 @@ module.exports.home = async (req,res,next)=>{
 }  
 
 //steps 4,5,6
-module.exports.login = (req,res,next)=>{
-
+//module.exports.login = (req,res,next)=>{
+//
   //create a random state value
-  let state = crypto.randomBytes(16).toString('hex');
+//  let state = crypto.randomBytes(16).toString('hex');
 
   //Save state and temporarysession for 10 mins
-  mycache.set(state, "aTempSessionValue", 600);
+//  mycache.set(state, "aTempSessionValue", 600);
 
-  let dbxRedirect= config.DBX_OAUTH_DOMAIN 
-  + config.DBX_OAUTH_PATH 
-  + "?response_type=code&client_id="+config.DBX_APP_KEY
-  + "&redirect_uri="+config.OAUTH_REDIRECT_URL 
-  + "&state="+state;
+//  let dbxRedirect= config.DBX_OAUTH_DOMAIN 
+//  + config.DBX_OAUTH_PATH 
+//  + "?response_type=code&client_id="+config.DBX_APP_KEY
+//  + "&redirect_uri="+config.OAUTH_REDIRECT_URL 
+//  + "&state="+state;
   
-  res.redirect(dbxRedirect);
-}
+//  res.redirect(dbxRedirect);
+//}
 
 
 //steps 8-12
-module.exports.oauthredirect = async (req,res,next)=>{
+//module.exports.oauthredirect = async (req,res,next)=>{
 
-	if(req.query.error_description){
-		return next( new Error(req.query.error_description));
-	} 
-
-	let state= req.query.state;
-	if(!mycache.get(state)){
-		return next(new Error("session expired or invalid state"));
-	} 
+	//if(req.query.error_description){
+	//	return next( new Error(req.query.error_description));
+	//} 
+	//
+	//let state= req.query.state;
+	//if(!mycache.get(state)){
+	//	return next(new Error("session expired or invalid state"));
+	//} 
 
   //Exchange code for token
-  if(req.query.code ){
+  //if(req.query.code ){
 
-  	let options={
-  		url: config.DBX_API_DOMAIN + config.DBX_TOKEN_PATH, 
+  //	let options={
+  //		url: config.DBX_API_DOMAIN + config.DBX_TOKEN_PATH, 
       //build query string
-      qs: {'code': req.query.code, 
-      'grant_type': 'authorization_code', 
-      'client_id': config.DBX_APP_KEY, 
-      'client_secret':config.DBX_APP_SECRET,
-      'redirect_uri':config.OAUTH_REDIRECT_URL}, 
-      method: 'POST',
-      json: true 
-    }
+   //   qs: {'code': req.query.code, 
+   //   'grant_type': 'authorization_code', 
+   //   'client_id': config.DBX_APP_KEY, 
+   //   'client_secret':config.DBX_APP_SECRET,
+    //  'redirect_uri':config.OAUTH_REDIRECT_URL}, 
+    //  method: 'POST',
+    //  json: true 
+   // }
 
-    try{
+    //try{
 
-    	let response = await rp(options);
+    //	let response = await rp(options);
 
       //we will replace later cache with a proper storage
-      mycache.set("aTempTokenKey", response.access_token, 3600);
-      res.redirect("/");
+     // mycache.set("aTempTokenKey", response.access_token, 3600);
+   //   res.redirect("/");
 
-    }catch(error){
-    	return next(new Error('error getting token. '+error.message));
-    }        
-  }
-}
+   // }catch(error){
+    //	return next(new Error('error getting token. '+error.message));
+  //  }        
+ // }
+//}
 
 
 
