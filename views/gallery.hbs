@@ -7,11 +7,18 @@
 	<script type='text/javascript' src='/javascripts/page.js'></script>
 	<link rel="stylesheet" href="/stylesheets/page.css">
 </head>
-<body>
+<body onload="timer = setTimeout('auto_reload()',3600000);">
 	<div class="galleria">
 		{{#each imgs}}
 		<img src="{{this}}">
 		{{/each}}
 	</div>
 </body>
+<script>
+var timer = null;
+function auto_reload()
+{
+	window.location = 'http://localhost:3000';
+}
+</script>
 </html>
