@@ -20,6 +20,19 @@
 		<div id="map-widget">
 			<script src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCpWs12utZbW9cT7RkaXMoIYyyumSVQkkA'></script><div style='overflow:hidden;height:400px;width:400px;'><div id='gmap_canvas' style='height:400px;width:400px;'></div><style>#gmap_canvas img{max-width:none!important;background:none!important}</style></div> <a href='https://freehitcounters.org/'>Hit Counter HTML Code</a> <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=b0eb63b0a835a14c8e03fa1b80cf98163502f4c9'></script><script type='text/javascript'>function init_map(){var myOptions = {zoom:10,center:new google.maps.LatLng(34.9104,-82.12299999999999),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(34.9104,-82.12299999999999)});infowindow = new google.maps.InfoWindow({content:'<strong>Charlotte Traffic</strong><br>6901 Rollingridge Drive<br>28211 Charlotte<br>'});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
 		</div>
+		<div id="clock-widget">
+			<div class="cleanslate w24tz-current-time w24tz-large" style="display: inline-block !important; visibility: hidden !important; min-width:300px !important; min-height:145px !important;"><p><a href="//24timezones.com/world_directory/time_in_charlotte.php" style="text-decoration: none" class="clock24" id="tz24-1561995733-c1412-eyJob3VydHlwZSI6IjEyIiwic2hvd2RhdGUiOiIxIiwic2hvd3NlY29uZHMiOiIwIiwiY29udGFpbmVyX2lkIjoiY2xvY2tfYmxvY2tfY2I1ZDFhMjlkNTRkYjAyIiwidHlwZSI6ImRiIiwibGFuZyI6ImVuIn0=" title="what time Charlotte" target="_blank" rel="nofollow">Charlotte, NC</a></p><div id="clock_block_cb5d1a29d54db02"></div></div>
+<script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
+		</div>
+		<div id="calendar-widget">
+			
+		</div>
+		<div id="weather-widget">
+			<a class="weatherwidget-io" href="https://forecast7.com/en/35d23n80d84/charlotte/?unit=us" data-label_1="Charlotte, NC" data-label_2="Weather" data-icons="Climacons Animated" data-theme="pure" >Charlotte, NC Weather</a>
+			<script>
+			!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+			</script>
+		</div>
 	</div>
 </body>
 <script>
