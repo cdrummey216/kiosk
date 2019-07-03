@@ -17,8 +17,10 @@
 		div.widget-overlay {min-height:100%; min-width:100%;position:relative; z-index: 10001;}
 	</style>
 	<div class="widget-overlay">
-		<div id="clock-widget">
-			<iframe src="http://free.timeanddate.com/clock/i6tw290d/n412/tt0/tw1/tm1/ts1/tb4" frameborder="0" width="124" height="34"></iframe>
+		<div id="clock-widget"> <!--https://time.is/widgets/Charlotte-->
+			<span id="Charlotte_z161"></span>
+			<script src="//widget.time.is/en.js"></script>
+			<script>time_is_widget.init({Charlotte_z161:{template:"TIME<br>DATE<br>SUN", date_format:"dayname, monthname dnum, year", sun_format:"Sunrise: srhour:srminute Sunset: sshour:ssminute", coords:"35.2270900,-80.8431300"}});</script>
 		</div>
 		<div id="weather-widget">
 			<a class="weatherwidget-io" href="https://forecast7.com/en/35d23n80d84/charlotte/?unit=us" data-label_1="Charlotte, NC" data-label_2="Weather" data-icons="Climacons Animated" data-theme="pure" >Charlotte, NC Weather</a>
