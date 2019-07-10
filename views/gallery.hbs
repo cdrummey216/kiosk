@@ -59,7 +59,7 @@ var calendar = new Calendar({
 		year: 2019,
 		month: 7
 	};
-});
+})
 
 calendar.set({message: 'loading...'})
 
@@ -67,7 +67,7 @@ fetch("entries.json").then(r => r.json()).then(data => {
 	var entries = calendar.get('entries');
 	entries = entries.concat(data.entries);
 	calendar.set({entries: entries, message: ''});
-	});
+	})
 
 function debug() {
 	document.querySelector('#debug').textContent = JSON.stringify(calendar.get(), null, 4);
