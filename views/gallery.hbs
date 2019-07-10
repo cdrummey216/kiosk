@@ -9,6 +9,12 @@
 	<script type='text/javascript' src='/javascripts/clock.js'></script>
 	<link rel="stylesheet" href="/stylesheets/page.css">
 	<link rel="stylesheet" href="/stylesheets/calendar.css">
+<!-- temporary styles-->
+	<style>
+		div.widget-overlay {min-height:100%; min-width:100%;position:relative; z-index: 10001;}
+		#calendar {max-width: 800px;margin: 2rem auto;padding: 0 5px;}
+	</style>
+
 </head>
 <body onload="timer = setTimeout('auto_reload()',3600000);">
 	<div class="galleria">
@@ -16,20 +22,12 @@
 		<img src="{{this}}">
 		{{/each}}
 	</div>
-	<style>
-	<!-- temporary -->
-		div.widget-overlay {min-height:100%; min-width:100%;position:relative; z-index: 10001;}
-		#calendar {max-width: 800px;margin: 2rem auto;padding: 0 5px;}
-	<!-- temporary-->
-	</style>
 	<div class="widget-overlay">
 		<div id="clock-widget">
 			<span id="Charlotte"></span>
 		</div>
 		<div id="calendar-widget">
-			<div id="calendar"></div>
-			<pre id="debug"></pre>
-			<div id="message"></div>
+			<div id="calendar"></div><pre id="debug"></pre><div id="message"></div>
 		</div>
 	</div>
 </body>
