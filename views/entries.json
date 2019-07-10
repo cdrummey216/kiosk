@@ -1,7 +1,7 @@
 {
   "entries": [
     {
-      "start": "2019-09-16", //ISO8601 if datetime
+      "start": "2019-09-16",
       "all_day": true,
       "title": "Anniversary",
       "content": "<p>Cullen and Audrey's Anniversary</p>",
@@ -11,8 +11,8 @@
       "id": 1
     },
     {
-      "start": "2020-01-27", //ISO8601 if datetime
-      "end": "2020-01-27", //ISO8601 if datetime
+      "start": "2020-01-27",
+      "end": "2020-01-27",
       "all_day": true,
       "title": "Ronan's 1st Birthday",
       "content": "<p>Happy 1st Birthday, Ronan!</p><blockquote>This is a blockquote</blockquote>",
