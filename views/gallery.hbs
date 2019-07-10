@@ -61,7 +61,7 @@ var calendar = new Calendar({
 	}
 })
 calendar.set({message: 'loading...'})
-fetch("/data.json").then(r => r.json()).then(data => {
+fetch("entries.json").then(r => r.json()).then(data => {
 	var entries = calendar.get('entries')
 	entries = entries.concat(data.entries)
 	calendar.set({entries: entries, message: ''
