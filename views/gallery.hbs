@@ -63,11 +63,11 @@ var calendar = new Calendar({
 
 calendar.set({message: 'loading...'})
 
-fetch('/data.json').then(r => r.json()).then(data => {
+fetch("/data.json").then(r => r.json()).then(data => {
 	var entries = calendar.get('entries')
 	entries = entries.concat(data.entries)
 	calendar.set({entries: entries, message: ''})
-	})
+})
 
 function debug() {
 	document.querySelector('#debug').textContent = JSON.stringify(calendar.get(), null, 4)
