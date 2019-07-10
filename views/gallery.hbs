@@ -47,8 +47,8 @@ time_is_widget.init({
 		date_format:"dayname, monthname dnum, year", 
 		sun_format:"Sunrise: srhour:srminute Sunset: sshour:ssminute", 
 		coords:"35.2270900,-80.8431300"
-	};
-});
+	}
+})
 </script>
 <script>
 var calendar = new Calendar({
@@ -58,19 +58,19 @@ var calendar = new Calendar({
 		view: 'calendar',
 		year: 2019,
 		month: 7
-	};
+	}
 })
 
 calendar.set({message: 'loading...'})
 
 fetch("entries.json").then(r => r.json()).then(data => {
-	var entries = calendar.get('entries');
-	entries = entries.concat(data.entries);
-	calendar.set({entries: entries, message: ''});
+	var entries = calendar.get('entries')
+	entries = entries.concat(data.entries)
+	calendar.set({entries: entries, message: ''})
 	})
 
 function debug() {
-	document.querySelector('#debug').textContent = JSON.stringify(calendar.get(), null, 4);
-};
+	document.querySelector('#debug').textContent = JSON.stringify(calendar.get(), null, 4)
+}
 </script>
 </html>
