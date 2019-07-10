@@ -19,7 +19,7 @@
 	<style>
 	<!-- temporary -->
 		div.widget-overlay {min-height:100%; min-width:100%;position:relative; z-index: 10001;}
-		
+		#calendar {max-width: 800px;margin: 2rem auto;padding: 0 5px;}
 	<!-- temporary-->
 	</style>
 	<div class="widget-overlay">
@@ -57,18 +57,16 @@ var calendar = new Calendar({
 		escape: false,
 		view: 'calendar',
 		year: 2019,
-		month: 7
+		month: 7,
 	}
 })
-
 calendar.set({message: 'loading...'})
-
 fetch("/data.json").then(r => r.json()).then(data => {
 	var entries = calendar.get('entries')
 	entries = entries.concat(data.entries)
-	calendar.set({entries: entries, message: ''})
+	calendar.set({entries: entries, message: ''
+	})
 })
-
 function debug() {
 	document.querySelector('#debug').textContent = JSON.stringify(calendar.get(), null, 4)
 }
