@@ -61,7 +61,7 @@ var calendar = new Calendar({
 	};
 });
 
-calendar.set({message: 'loading...'});
+calendar.set({message: 'loading...'})
 
 fetch("entries.json").then(r => r.json()).then(data => {
 	var entries = calendar.get('entries');
