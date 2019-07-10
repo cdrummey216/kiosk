@@ -5,7 +5,10 @@
 	<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 	<script src="/galleria/galleria-1.5.7.min.js"></script>
 	<script type='text/javascript' src='/javascripts/page.js'></script>
+	<script type='text/javascript' src='/javascripts/calendar.js'></script>
+	<script type='text/javascript' src='/javascripts/clock.js'></script>
 	<link rel="stylesheet" href="/stylesheets/page.css">
+	<link rel="stylesheet" href="/stylesheets/calendar.css">
 </head>
 <body onload="timer = setTimeout('auto_reload()',3600000);">
 	<div class="galleria">
@@ -14,57 +17,19 @@
 		{{/each}}
 	</div>
 	<style>
+	<!-- temporary -->
 		div.widget-overlay {min-height:100%; min-width:100%;position:relative; z-index: 10001;}
+		
+	<!-- temporary-->
 	</style>
 	<div class="widget-overlay">
-		<div id="clock-widget"> <!--https://time.is/widgets/Charlotte-->
-			<span id="Charlotte_z161"></span>
-			<script src="//widget.time.is/en.js"></script>
-			<script>time_is_widget.init({Charlotte_z161:{template:"TIME<br>DATE<br>SUN", date_format:"dayname, monthname dnum, year", sun_format:"Sunrise: srhour:srminute Sunset: sshour:ssminute", coords:"35.2270900,-80.8431300"}});</script>
-		</div>
-		<div id="weather-widget">
-			<a class="weatherwidget-io" href="https://forecast7.com/en/35d23n80d84/charlotte/?unit=us" data-label_1="Charlotte, NC" data-label_2="Weather" data-icons="Climacons Animated" data-theme="pure" >Charlotte, NC Weather</a>
-			<script>
-			!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-			</script>
+		<div id="clock-widget">
+			<span id="Charlotte"></span>
 		</div>
 		<div id="calendar-widget">
-		  <div id="calendar" style="max-width: 800px;margin: 2rem auto;padding: 0 5px"></div>
-		  <pre id="debug"></pre>
-		  <div style="text-align: center"></div>
-		  <link rel="stylesheet" href="https://jacoduplessis.github.io/calendar/dist/calendar.css">
-		  <script src="https://jacoduplessis.github.io/calendar/dist/calendar.js"></script>
-		  <script>
-		    var calendar = new Calendar({
-		      target: document.querySelector("#calendar"),
-		      data: {
-			escape: false,
-			view: 'calendar',
-			year: 2019,
-			month: 7,
-		      }
-		    })
-		    calendar.set({message: 'loading...'})
-		    fetch("entries.json").then(r => r.json()).then(data => {
-		      var entries = calendar.get('entries')
-		      entries = entries.concat(data.entries)
-		      calendar.set({entries: entries, message: ''})
-		    })
-		    function debug() {
-			document.querySelector('#debug').textContent = JSON.stringify(calendar.get(), null, 4)
-		      }
-		  </script>
-		  <style>
-		    img {
-		      max-width: 100%
-		    }
-		  </style>
-		</div>
-		<div id="traffic-widget"> <!-- https://developers.google.com/maps/documentation/javascript/examples/layer-traffic -->
-			<script src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCpWs12utZbW9cT7RkaXMoIYyyumSVQkkA'></script><div style='overflow:hidden;height:400px;width:400px;'><div id='gmap_canvas' style='height:400px;width:400px;'></div><style>#gmap_canvas img{max-width:none!important;background:none!important}</style></div> <a href='https://freehitcounters.org/'>Hit Counter HTML Code</a> <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=b0eb63b0a835a14c8e03fa1b80cf98163502f4c9'></script><script type='text/javascript'>function init_map(){var myOptions = {zoom:10,center:new google.maps.LatLng(34.9104,-82.12299999999999),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(34.9104,-82.12299999999999)});infowindow = new google.maps.InfoWindow({content:'<strong>Charlotte Traffic</strong><br>6901 Rollingridge Drive<br>28211 Charlotte<br>'});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
-		</div>
-		<div id="crypto-widget">
-			<script type="text/javascript" src="//100widgets.com/js_data.php?id=286"></script>
+			<div id="calendar"></div>
+			<pre id="debug"></pre>
+			<div id="message"></div>
 		</div>
 	</div>
 </body>
@@ -74,5 +39,38 @@ function auto_reload()
 {
 	window.location = 'http://localhost:3000';
 }
+</script>
+<script>
+time_is_widget.init({
+	Charlotte:{
+		template:"TIME<br>DATE<br>SUN", 
+		date_format:"dayname, monthname dnum, year", 
+		sun_format:"Sunrise: srhour:srminute Sunset: sshour:ssminute", 
+		coords:"35.2270900,-80.8431300"
+	};
+});
+</script>
+<script>
+var calendar = new Calendar({
+	target: document.querySelector("#calendar"),
+	data: {
+		escape: false,
+		view: 'calendar',
+		year: 2019,
+		month: 7
+	};
+});
+
+calendar.set({message: 'loading...'});
+
+fetch("entries.json").then(r => r.json()).then(data => {
+	var entries = calendar.get('entries');
+	entries = entries.concat(data.entries);
+	calendar.set({entries: entries, message: ''});
+	});
+
+function debug() {
+	document.querySelector('#debug').textContent = JSON.stringify(calendar.get(), null, 4);
+};
 </script>
 </html>
