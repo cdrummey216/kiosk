@@ -6,7 +6,9 @@ module.exports.home = (req,res,next)=>{
 	for (var i = 0, len = names.length; i < len; i++) {
 		var s ='images/'+names[i];
 		paths.push(s);
-	};	
+	};
+		
 	
 	res.render('gallery', { imgs: paths, layout:false});
 };
+
