@@ -8,6 +8,7 @@
 	<script type='text/javascript' src='/javascripts/clock.js'></script>
 	<link rel="stylesheet" href="/stylesheets/page.css">
 	<link rel="stylesheet" href="/stylesheets/calendar.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <!-- temporary styles-->
 	<style>
 		div.widget-overlay {min-height:100%; min-width:100%;position:absolute; z-index: 10001;}
@@ -22,11 +23,14 @@
 		{{/each}}
 	</div>
 	<div class="widget-overlay">
-		<div id="clock-widget">
-			<span id="Charlotte"></span>
+		<div id="clock-widget panel panel-default">
+			<div class="panel-body" id="Charlotte"></div>
 		</div>
-		<div id="calendar-widget">
-			<div id="calendar"></div><pre id="debug"></pre><div id="message"></div>
+		<div id="calendar-widget panel panel-default">
+			<div class="panel-body" id="calendar"></div><pre id="debug"></pre><div id="message"></div>
+		</div>
+		<div class="panel panel-default">
+  			<div class="panel-body">A Basic Panel</div>
 		</div>
 	</div>
 </body>
