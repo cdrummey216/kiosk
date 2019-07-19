@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>                       
-	<!--<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	
+	<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 	<script src="/galleria/galleria-1.5.7.min.js"></script>
 	<script type='text/javascript' src='/javascripts/page.js'></script>
+<!-- calendar -->	
 	<script type='text/javascript' src='/javascripts/calendar.js'></script>
+<!-- Clock https://github.com/cer/nodejs-clock/tree/master/distributed/nodejs-clock -->	
+	<script src="='/javascripts/knockout-2.0.0.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
 	<script type='text/javascript' src='/javascripts/clock.js'></script>
+	
 	<link rel="stylesheet" href="/stylesheets/page.css">
 	<link rel="stylesheet" href="/stylesheets/calendar.css">
-	
-	<!-- Bootstrap-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 <!-- temporary styles-->
 	<style>
 		div.widget-overlay {min-height:100%; min-width:100%;position:absolute; z-index: 10001;}
@@ -21,7 +22,7 @@
 	</style>
 
 </head>
-<body onload="timer = setTimeout('auto_reload()',3600000);">
+<body>
 	<div class="galleria">
 		{{#each imgs}}
 		<img src="{{this}}">
@@ -29,35 +30,18 @@
 	</div>
 	<div class="widget-overlay">
 		<div id="clock-widget panel panel-default">
-			<div class="panel-body" id="Charlotte"></div>
+			<span class="panel-body" data-bind="text: ticker"></span>
 		</div>
 		<div id="calendar-widget panel panel-default">
-			<div class="panel-body">
-				<div id="calendar"></div><pre id="debug"></pre><div id="message"></div>
-			<div>
+			<div class="panel-body" id="calendar"></div><pre id="debug"></pre><div id="message"></div>
 		</div>
-		<!--<div class="panel panel-default">
+		<!-- <div class="panel panel-default">
   			<div class="panel-body">A Basic Panel</div>
 		</div>-->
 	</div>
 </body>
-<script>
-var timer = null;
-function auto_reload()
-{
-	window.location = 'http://localhost:3000'
-}
-</script>
-<script>
-time_is_widget.init({
-	Charlotte:{
-		template:"TIME<br>DATE<br>SUN", 
-		date_format:"dayname, monthname dnum, year", 
-		sun_format:"Sunrise: srhour:srminute Sunset: sshour:ssminute", 
-		coords:"35.2270900,-80.8431300"
-	}
-})
-</script>
+
+
 <script>
 var calendar = new Calendar({
 	target: document.querySelector("#calendar"),
