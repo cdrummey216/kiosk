@@ -37,7 +37,20 @@ io.sockets.on('connection', function (socket) {
 });
 
 //end clock
+//Weather
 
+var React = require('react');
+var Forecast = require('react-forecast');
+
+var Component = React.createClass({
+  render: function() {
+    return (
+      <Forecast latitude={35.27} longitude={-80.84} name='Charlotte, NC' />
+    );
+  }
+});
+
+//End Weather
 
 
 // view engine setup
