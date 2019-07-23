@@ -18,18 +18,21 @@
 		#bg-img {top:0; left:0; min-width:100%; position:absolute;}
 		
 		
-		<!-- PANEL CSS -->
 		body {overflow: hidden;}
 		.panel {width: 50%; max-height: 200px; float: left; display: inline-block; text-align:center;}
+		#clock-widget {width: 100%; text-align: center}
+		#clock-widget span {font-size: 4em;}
 		#message, #debug {display:none;}
+		#calendar-widget {bottom: 0; position: absolute;}
+		#weather-widget {bottom: 0; left: 50%; position: absolute;}
 	</style>
 
 </head>
 <body>
 	<img id="bg-img" src="images/c.jpg">
 	<div class="widget-overlay">
-		<div id="clock-widget" class="panel panel-default">
-			<span class="panel-body" data-bind="text: ticker">17:14PM</span>
+		<div id="clock-widget">
+			<span data-bind="text: ticker">17:14PM</span>
 		</div>
 		<div class="panel panel-default" id="calendar-widget">
 			<div class="panel-body" id="calendar"></div>
