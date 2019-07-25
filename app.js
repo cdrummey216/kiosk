@@ -13,9 +13,8 @@ weather.find({search: 'Charlotte, NC', degreeType: 'F'}, function(err, result) {
   if(err) console.log(err);
   let rawdata = JSON.stringify(result, null, 2); 
   let weather_data = JSON.parse(rawdata);
-   
-   
-   
+  
+  res.json(weather_data);
    
 });
 
