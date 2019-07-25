@@ -2,23 +2,33 @@
 <html>
 <head>                       
 	<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-	<script src="/galleria/galleria-1.5.7.min.js"></script>
-	<script type='text/javascript' src='/javascripts/page.js'></script>
-<!-- calendar -->	
-	<script type='text/javascript' src='/javascripts/calendar.js'></script>
-<!-- Clock https://github.com/cer/nodejs-clock/tree/master/distributed/nodejs-clock -->	
-	<script src="='/javascripts/knockout-2.0.0.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
-	<script type='text/javascript' src='/javascripts/clock.js'></script>
+	<script src="galleria/galleria-1.5.7.min.js"></script>
+	<script type='text/javascript' src='javascripts/page.js'></script>
+	<script type='text/javascript' src='javascripts/clock.js'></script>
+	<!-- Clock https://github.com/cer/nodejs-clock/tree/master/distributed/nodejs-clock -->	
+	<script src="javascripts/knockout-2.0.0.js"></script>
+	<link rel="stylesheet" href="stylesheets/page.css">
 	
-	<link rel="stylesheet" href="/stylesheets/page.css">
-	<link rel="stylesheet" href="/stylesheets/calendar.css">
+	<!-- calendar  
+	
+	https://fullcalendar.io/
+	
+	-->
+	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
 <!-- temporary styles-->
 	<style>
-		div.widget-overlay {min-height:100%; min-width:100%;position:absolute; z-index: 10001;}
-		#calendar {max-width: 800px;margin: 2rem auto;padding: 0 5px;}
+		div.widget-overlay {min-height:100%; min-width:100%;position:absolute; z-index: 10001;overflow:hidden;}
+		#calendar {max-height: 200px;overflow: hidden; 2rem auto; padding: 0 5px;}
+		#bg-img {top:0; left:0; min-width:100%; position:absolute;}
+		
+		body {overflow: hidden;}
+		.panel {width: 50%; max-height: 200px; float: left; display: inline-block; text-align:center;}
+		#clock-widget {width: 100%; text-align: center}
+		#clock-widget span {font-size: 4em;}
+		#message, #debug {display:none;}
+		#calendar-widget {bottom: 0; position: absolute;}
+		#weather-widget {bottom: 0; left: 50%; position: absolute;}
 	</style>
 
 </head>
@@ -32,35 +42,13 @@
 		<div id="clock-widget panel panel-default">
 			<span class="panel-body" data-bind="text: ticker"></span>
 		</div>
-		<div id="calendar-widget panel panel-default">
-			<div class="panel-body" id="calendar"></div><pre id="debug"></pre><div id="message"></div>
+		<div class="panel panel-default" id="calendar-widget">
+			<div class="panel-body" id="calendar"></div>
+			<span id="script-warning"></span>
 		</div>
-		<!-- <div class="panel panel-default">
-  			<div class="panel-body">A Basic Panel</div>
-		</div>-->
+		<div class="panel panel-default" id="weather-widget">
+  			<div class="panel-body" id="weather"></div>
+		</div>
 	</div>
 </body>
-
-
-<script>
-var calendar = new Calendar({
-	target: document.querySelector("#calendar"),
-	data: {
-		escape: false,
-		view: 'calendar',
-		year: 2019,
-		month: 7,
-	}
-})
-calendar.set({message: 'loading...'})
-fetch("/entries.json").then(r => r.json()).then(data => {
-	var entries = calendar.get('entries')
-	entries = entries.concat(data.entries)
-	calendar.set({entries: entries, message: ''
-	})
-})
-function debug() {
-	document.querySelector('#debug').textContent = JSON.stringify(calendar.get(), null, 4)
-}
-</script>
 </html>
