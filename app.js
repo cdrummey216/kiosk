@@ -52,6 +52,22 @@ var Component = React.createClass({
 
 //End Weather
 
+//calendar https://fullcalendar.io/docs/initialize-es6
+import { Calendar } from '@fullcalendar/core';
+import listPlugin from '@fullcalendar/list';
+
+let calendar = new Calendar(calendarEl, {
+  plugins: [ listPlugin ],
+  defaultView: 'listWeek',
+  events: {
+     url: 'events.json',
+     failure: function() {
+          document.getElementById('script-warning').style.display = 'block'
+        }
+      },
+});
+
+//end calendar
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
