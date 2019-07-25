@@ -5,49 +5,18 @@ var logger = require('morgan');
 var index = require('./routes/index');
 var app = express();
 
-//clock 
-var http = require('http');
-var server = http.createServer(app);
-var io = require('socket.io').listen(server);
-var amqpHelper = require("./amqphelper");
+//clock
 
-var amqpConnection = amqpHelper.initializeAmqp();
-
-server.listen(3000);
-
-io.sockets.on('connection', function (socket) {
-   var queueForSocket;
-   var ctag;
-   function amqpMessageHandler(message, headers, deliveryInfo) { 
-        var m = JSON.parse(message.data.toString());
-   		console.log("message", m);
-        socket.emit('tick', m.tick);
-    };
-    amqpConnection.queue('', {},
-         function(queue) {
-         	 queueForSocket = queue;
-             queue.bind("tickTock", '');  
-             queue.subscribe(amqpMessageHandler).addCallback(function(ok) { ctag = ok.consumerTag; });;
-    });
-
-    socket.on('disconnect', function () {
-    	console.log("disconnect");
-    	queueForSocket.unsubscribe(ctag);
-    });
-});
-
-//end clock
 //Weather
-
-var React = require('react');
-var Forecast = require('react-forecast');
-
-var Component = React.createClass({
-  render: function() {
-    return (
-      <Forecast latitude={35.27} longitude={-80.84} name='Charlotte, NC' />
-    );
-  }
+var weather = require('weather-js');
+weather.find({search: 'Charlotte, NC', degreeType: 'F'}, function(err, result) {
+  if(err) console.log(err);
+  let rawdata = JSON.stringify(result, null, 2); 
+  let weather_data = JSON.parse(rawdata);
+   
+   
+   
+   
 });
 
 //End Weather
@@ -56,15 +25,21 @@ var Component = React.createClass({
 import { Calendar } from '@fullcalendar/core';
 import listPlugin from '@fullcalendar/list';
 
-let calendar = new Calendar(calendarEl, {
-  plugins: [ listPlugin ],
-  defaultView: 'listWeek',
-  events: {
-     url: 'events.json',
-     failure: function() {
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+
+  var calendar = new Calendar(calendarEl, {
+      plugins: [ listPlugin ],
+      defaultView: 'listWeek',
+      events: {
+         url: 'events.json',
+         failure: function() {
           document.getElementById('script-warning').style.display = 'block'
-        }
-      },
+        }   
+      }
+  });
+
+  calendar.render();
 });
 
 //end calendar
