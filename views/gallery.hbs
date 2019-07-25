@@ -43,8 +43,24 @@
 			<span class="panel-body" data-bind="text: ticker"></span>
 		</div>
 		<div class="panel panel-default" id="calendar-widget">
-			<div class="panel-body" id="calendar"></div>
 			<span id="script-warning"></span>
+			<script>
+				document.getElementById("loc_name").innerHTML = obj.weather_data.current.observationpoint;
+				document.getElementById("temp").innerHTML = obj.weather_data.current.temperature + 'F';
+				document.getElementById("feelslike").innerHTML = obj.weather_data.current.feelslike + 'F';
+				document.getElementById("humidity").innerHTML = obj.weather_data.current.humidity + '%';
+				document.getElementById("skytext").innerHTML = obj.weather_data.current.skytext;
+				document.getElementById("skytext").innerHTML = obj.weather_data.current.winddisplay;
+				document.getElementById("image").src = obj.weather_data.current.imageUrl;
+			</script>
+			<div class="panel-body" id="calendar">
+				<span id="loc_name"></span>
+				<span id="temp"></span>
+				<span id="feelslike"></span>
+				<span id="skytext"></span>
+				<span id="loc_name"></span>
+				<img id="image" src="">
+			</div>
 		</div>
 		<div class="panel panel-default" id="weather-widget">
   			<div class="panel-body" id="weather"></div>
